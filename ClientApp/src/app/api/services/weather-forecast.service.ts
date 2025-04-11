@@ -15,7 +15,6 @@ import { apiWeatherForecastGet$Json } from '../fn/weather-forecast/api-weather-f
 import { ApiWeatherForecastGet$Json$Params } from '../fn/weather-forecast/api-weather-forecast-get-json';
 import { apiWeatherForecastGet$Plain } from '../fn/weather-forecast/api-weather-forecast-get-plain';
 import { ApiWeatherForecastGet$Plain$Params } from '../fn/weather-forecast/api-weather-forecast-get-plain';
-import { WeatherForecast } from '../models/weather-forecast';
 
 @Injectable({ providedIn: 'root' })
 export class WeatherForecastService extends BaseService {
@@ -32,7 +31,7 @@ export class WeatherForecastService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiWeatherForecastGet$Plain$Response(params?: ApiWeatherForecastGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<WeatherForecast>>> {
+  apiWeatherForecastGet$Plain$Response(params?: ApiWeatherForecastGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
     return apiWeatherForecastGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -42,9 +41,9 @@ export class WeatherForecastService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiWeatherForecastGet$Plain(params?: ApiWeatherForecastGet$Plain$Params, context?: HttpContext): Observable<Array<WeatherForecast>> {
+  apiWeatherForecastGet$Plain(params?: ApiWeatherForecastGet$Plain$Params, context?: HttpContext): Observable<any> {
     return this.apiWeatherForecastGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Array<WeatherForecast>>): Array<WeatherForecast> => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body)
     );
   }
 
@@ -54,7 +53,7 @@ export class WeatherForecastService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiWeatherForecastGet$Json$Response(params?: ApiWeatherForecastGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<WeatherForecast>>> {
+  apiWeatherForecastGet$Json$Response(params?: ApiWeatherForecastGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
     return apiWeatherForecastGet$Json(this.http, this.rootUrl, params, context);
   }
 
@@ -64,9 +63,9 @@ export class WeatherForecastService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiWeatherForecastGet$Json(params?: ApiWeatherForecastGet$Json$Params, context?: HttpContext): Observable<Array<WeatherForecast>> {
+  apiWeatherForecastGet$Json(params?: ApiWeatherForecastGet$Json$Params, context?: HttpContext): Observable<any> {
     return this.apiWeatherForecastGet$Json$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Array<WeatherForecast>>): Array<WeatherForecast> => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body)
     );
   }
 

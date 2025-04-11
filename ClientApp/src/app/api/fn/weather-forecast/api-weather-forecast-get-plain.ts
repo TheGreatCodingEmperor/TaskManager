@@ -8,14 +8,29 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { WeatherForecast } from '../../models/weather-forecast';
 
 export interface ApiWeatherForecastGet$Plain$Params {
+  Date?: string;
+  TemperatureC?: number;
+  TemperatureF?: number;
+  Summary?: string;
+  OrderColumn?: string;
+  OrderDescending?: boolean;
+  Page?: number;
+  PageSize?: number;
 }
 
-export function apiWeatherForecastGet$Plain(http: HttpClient, rootUrl: string, params?: ApiWeatherForecastGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<WeatherForecast>>> {
+export function apiWeatherForecastGet$Plain(http: HttpClient, rootUrl: string, params?: ApiWeatherForecastGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
   const rb = new RequestBuilder(rootUrl, apiWeatherForecastGet$Plain.PATH, 'get');
   if (params) {
+    rb.query('Date', params.Date, {});
+    rb.query('TemperatureC', params.TemperatureC, {});
+    rb.query('TemperatureF', params.TemperatureF, {});
+    rb.query('Summary', params.Summary, {});
+    rb.query('OrderColumn', params.OrderColumn, {});
+    rb.query('OrderDescending', params.OrderDescending, {});
+    rb.query('Page', params.Page, {});
+    rb.query('PageSize', params.PageSize, {});
   }
 
   return http.request(
@@ -23,7 +38,7 @@ export function apiWeatherForecastGet$Plain(http: HttpClient, rootUrl: string, p
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Array<WeatherForecast>>;
+      return r as StrictHttpResponse<any>;
     })
   );
 }

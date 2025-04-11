@@ -12,9 +12,5 @@ export class AppComponent {
     constructor(
         private weatherForecastService:WeatherForecastService
     ){
-        this.weatherForecastService.apiWeatherForecastGet$Json()
-        .subscribe(res => {
-            console.log(res);
-        })
     }
 }
