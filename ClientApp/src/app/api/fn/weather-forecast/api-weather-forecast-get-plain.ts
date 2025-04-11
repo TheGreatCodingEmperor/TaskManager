@@ -10,11 +10,11 @@ import { RequestBuilder } from '../../request-builder';
 
 import { WeatherForecast } from '../../models/weather-forecast';
 
-export interface WeatherForecastGet$Plain$Params {
+export interface ApiWeatherForecastGet$Plain$Params {
 }
 
-export function weatherForecastGet$Plain(http: HttpClient, rootUrl: string, params?: WeatherForecastGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<WeatherForecast>>> {
-  const rb = new RequestBuilder(rootUrl, weatherForecastGet$Plain.PATH, 'get');
+export function apiWeatherForecastGet$Plain(http: HttpClient, rootUrl: string, params?: ApiWeatherForecastGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<WeatherForecast>>> {
+  const rb = new RequestBuilder(rootUrl, apiWeatherForecastGet$Plain.PATH, 'get');
   if (params) {
   }
 
@@ -28,4 +28,4 @@ export function weatherForecastGet$Plain(http: HttpClient, rootUrl: string, para
   );
 }
 
-weatherForecastGet$Plain.PATH = '/WeatherForecast';
+apiWeatherForecastGet$Plain.PATH = '/api/WeatherForecast';

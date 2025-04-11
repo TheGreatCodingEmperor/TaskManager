@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { WeatherForecastService } from './app/api/services';
 
 @Component({
     selector: 'app-root',
@@ -7,4 +8,13 @@ import { RouterModule } from '@angular/router';
     imports: [RouterModule],
     template: `<router-outlet></router-outlet>`
 })
-export class AppComponent {}
+export class AppComponent {
+    constructor(
+        private weatherForecastService:WeatherForecastService
+    ){
+        this.weatherForecastService.apiWeatherForecastGet$Json()
+        .subscribe(res => {
+            console.log(res);
+        })
+    }
+}
