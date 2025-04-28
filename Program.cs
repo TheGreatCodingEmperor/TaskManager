@@ -6,6 +6,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllersWithViews();
 
+
+// è¨»å†Š IHttpClientFactory
+builder.Services.AddHttpClient();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -19,7 +23,7 @@ app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-    c.RoutePrefix = "swagger"; // ±N Swagger UI ³]©w¬°À³¥Îµ{¦¡ªº®Ú¥Ø¿ý
+    c.RoutePrefix = "swagger"; // ï¿½N Swagger UI ï¿½]ï¿½wï¿½ï¿½ï¿½ï¿½ï¿½Îµ{ï¿½ï¿½ï¿½ï¿½ï¿½Ú¥Ø¿ï¿½
 });
 
 app.UseHttpsRedirection();

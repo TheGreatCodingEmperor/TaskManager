@@ -17,6 +17,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.0"/>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
   </ItemGroup>
   <ItemGroup>
     <Content Remove="$(SpaRoot)**"/>
@@ -45,21 +47,14 @@
   </Target>
   <Target Name="GenerateSwagger" AfterTargets="Build">
     <Exec Command="dotnet tool list -g | findstr swashbuckle.aspnetcore.cli" ContinueOnError="true">
-      <Output TaskParameter="ExitCode" PropertyName="SwashbuckleInstalled" />
+      <Output TaskParameter="ExitCode" PropertyName="SwashbuckleInstalled"/>
     </Exec>
-    <Exec Condition="'$(SwashbuckleInstalled)' != '0'"
-      Command="dotnet tool install --global Swashbuckle.AspNetCore.Cli" />
-
-    <MakeDir Directories="swagger" />
-    <Exec Command="swagger tofile --output ./swagger/swagger.json &quot;$(TargetPath)&quot; v1" />
+    <Exec Condition="'$(SwashbuckleInstalled)' != '0'" Command="dotnet tool install --global Swashbuckle.AspNetCore.Cli"/>
+    <Exec Command="swagger tofile --output ./swagger/swagger.json &quot;$(TargetPath)&quot; v1"/>
+    <MakeDir Directories="swagger"/>
   </Target>
   <Target Name="GenerateAngularClient" AfterTargets="Build">
-    <!-- 2. 安裝 ng-openapi-gen（僅在 Debug 模式安裝） -->
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install ng-openapi-gen --save-dev" />
-
-    <!-- 4. 執行 ng-openapi-gen 將 swagger.json 轉成 Angular service -->
-    <Exec Command="npx ng-openapi-gen --input ../swagger/swagger.json --output src/app/api"
-      WorkingDirectory="$(SpaRoot)" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install ng-openapi-gen --save-dev"/>
+    <Exec Command="npx ng-openapi-gen --input ../swagger/swagger.json --output src/app/api" WorkingDirectory="$(SpaRoot)"/>
   </Target>
-  
 </Project>

@@ -6,6 +6,8 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
+import { ChatService } from './services/chat.service';
+import { GeminiChatService } from './services/gemini-chat.service';
 import { WeatherForecastService } from './services/weather-forecast.service';
 
 /**
@@ -16,6 +18,8 @@ import { WeatherForecastService } from './services/weather-forecast.service';
   exports: [],
   declarations: [],
   providers: [
+    ChatService,
+    GeminiChatService,
     WeatherForecastService,
     ApiConfiguration
   ],
